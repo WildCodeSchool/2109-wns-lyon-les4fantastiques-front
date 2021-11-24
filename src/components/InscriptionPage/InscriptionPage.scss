@@ -1,0 +1,13 @@
+body {
+    background-color: white;
+#main_central_element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    h1 {
+        color: #027bce;
+    }
+}
+}
