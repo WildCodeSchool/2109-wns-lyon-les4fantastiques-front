@@ -1,0 +1,60 @@
+.background{
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-image: url("../asset/backgroundMainPage.png");
+	background-size:cover;
+}
+
+.top{
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 40px;
+	max-height: 40px;
+}
+
+.bottom{
+	display: flex;
+	flex-grow: 2;
+	justify-content: center;
+	align-items: center;
+}
+
+.middleBottom{
+	background-color: #1d1c1c;
+	border-radius: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 80px;
+	padding-top: 80px;
+	color: #027BCE ;
+	max-width: 50%;
+	font-size: 60px ;
+	text-align: center;
+}
+
+.textYellow{
+	color: #f8ce54;
+	font-size: 65px;
+}
+
+.textGreen{
+	color:#83f259 ;
+	font-size: 65px;
+}
+
+/*bouton de connexion*/
+.css-sghohy-MuiButtonBase-root-MuiButton-root{
+	margin-right: 25px !important; 
+	border-color: #027BCE !important;
+	border: 1px solid #027BCE !important;
+	color: #027BCE  !important;
+	background-color:#1d1c1c !important;
+}
+
+/*bouton d'inscription*/
+.css-1w1rijm-MuiButtonBase-root-MuiButton-root{
+	background-color: #027BCE !important;
+	color:#1d1c1c !important;
+	margin-right: 20px !important;
+}
