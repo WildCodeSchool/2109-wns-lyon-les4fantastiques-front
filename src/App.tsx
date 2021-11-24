@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { InscriptionPage } from './components/InscriptionPage/InscriptionPage';
+import { ConnexionPage } from './components/ConnexionPage/ConnexionPage';
+import EasyTicketLogo from './easy-ticket-logo.svg';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <img src={EasyTicketLogo} id="EasyTicketLogo" alt="EasyTicketLogo" />
+    <Router>
+      <Routes>
+      <Route path="/inscription" element={<InscriptionPage/>} />
+      <Route path="/connexion" element={<ConnexionPage/>} />
+    </Routes>
+    </Router>
+    </>
   );
 }
 
