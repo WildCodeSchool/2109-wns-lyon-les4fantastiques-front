@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import logo from './logo.svg';
-import MainPageComponent from './components/MainPageComponent/MainPageComponent';
+import WelcomePage from './components/WelcomePage/WelcomePage';
 import { InscriptionPage } from './components/InscriptionPage/InscriptionPage';
 import { ConnexionPage } from './components/ConnexionPage/ConnexionPage';
 import EasyTicketLogo from './easy-ticket-logo.svg';
@@ -13,7 +13,7 @@ function App() {
     <img src={EasyTicketLogo} id="EasyTicketLogo" alt="EasyTicketLogo" />
     <Router>
       <Routes>
-      <Route path="/welcome" element={<MainPageComponent/>} />
+      <Route path="/" element={<WelcomePage/>} />
       <Route path="/inscription" element={<InscriptionPage/>} />
       <Route path="/connexion" element={<ConnexionPage/>} />
     </Routes>
