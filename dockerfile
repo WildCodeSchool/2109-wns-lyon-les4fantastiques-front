@@ -1,11 +1,10 @@
 FROM node:lts-alpine
-RUN mkdir /app
 WORKDIR /app
 COPY package*.json ./
-RUN npm i
+RUN yarn
 
 COPY tsconfig.json ./
 COPY src src
 COPY public public
 
-CMD npm start 
+CMD yarn start
