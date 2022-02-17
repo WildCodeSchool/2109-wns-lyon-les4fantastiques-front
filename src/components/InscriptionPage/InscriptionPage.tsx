@@ -40,6 +40,7 @@ export function InscriptionPage () {
 
     return (
       <>
+      <div id="main_central_element">
         <Box
       component="form"
       sx={{
@@ -59,6 +60,7 @@ export function InscriptionPage () {
     <Link to="/connexion">
     <p>Always registred ? Sign in here</p>
     </Link>
+    </div>
     </>
     )
 }
