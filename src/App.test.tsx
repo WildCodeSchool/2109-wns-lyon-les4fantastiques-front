@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
-import InscriptionPage from "./components/InscriptionPage/InscriptionPage";
 import { Button } from '@mui/material';
 
 test('renders learn react link', () => {
