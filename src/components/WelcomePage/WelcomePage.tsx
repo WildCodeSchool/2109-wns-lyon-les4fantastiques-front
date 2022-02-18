@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import './welcomePage.css';
+import './WelcomePage.scss';
 
 function WelcomePage(){
 	return(
