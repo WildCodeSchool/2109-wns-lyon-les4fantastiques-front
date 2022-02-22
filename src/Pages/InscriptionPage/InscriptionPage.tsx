@@ -19,7 +19,7 @@ const inscription = gql`
     }
   `;
 
-export function InscriptionPage () {
+export function InscriptionPage(): JSX.Element {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');

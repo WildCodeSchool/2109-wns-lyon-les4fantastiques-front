@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import './WelcomePage.scss';
 
-function WelcomePage(){
+function WelcomePage(): JSX.Element{
 	return(
 		<div className = "background">
 			<div className = "top"> 
@@ -10,7 +10,7 @@ function WelcomePage(){
         <Button variant="contained">Inscription</Button>
       </div>
       <div className = "bottom">
-        <div className = "middleBottom" data-testid="middleText"><p>Bienvenue sur <span className = "textYellow">EasyTicket</span>, votre outil de gestion de projet <span className = "textGreen">collaboratif</span></p></div>
+        <div className = "middleBottom" data-testid="middleText"><p>Bienvenue sur <span className = "title-EasyTicket">EasyTicket</span>, votre outil de gestion de projet <span className = "textGreen">collaboratif</span></p></div>
       </div>
 		</div>
 	);

@@ -1,0 +1,70 @@
+@import "../../scss/colors.scss";
+
+.background {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url("../../assets/images/backgroundMainPage.png");
+  background-size: cover;
+}
+
+.top {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 40px;
+  max-height: 40px;
+}
+
+.bottom {
+  display: flex;
+  flex-grow: 2;
+  justify-content: center;
+  align-items: center;
+}
+
+.middleBottom {
+  background-color: $grey;
+  border-radius: 10px;
+  padding: 40px 20px 40px 40px;
+  margin-top: 15%;
+  color: $navyBlue;
+  max-width: 55%;
+  font-size: 50px;
+  text-align: left;
+  /*shadow*/
+  box-shadow: -3px -5px 57px 7px rgba(0, 0, 0, 0.61);
+  -webkit-box-shadow: -3px -5px 57px 7px rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: -3px -5px 57px 7px rgba(0, 0, 0, 0.61);
+}
+
+.title-EasyTicket {
+  color: $orange;
+  font-size: 55px;
+}
+
+.textGreen {
+  color: $green;
+  font-size: 55px;
+}
+
+/*bouton de connexion*/
+.css-sghohy-MuiButtonBase-root-MuiButton-root {
+  margin-right: 25px !important;
+  border-color: $navyBlue !important;
+  border: 1px solid $navyBlue !important;
+  color: $navyBlue !important;
+  background-color: $grey !important;
+}
+
+/*bouton d'inscription*/
+.css-1w1rijm-MuiButtonBase-root-MuiButton-root {
+  background-color: $navyBlue !important;
+  color: $grey !important;
+  margin-right: 20px !important;
+}
+
+#EasyTicketLogo {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}

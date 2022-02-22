@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import './ConnexionPage.scss';
 
 
-export function ConnexionPage () {
+export function ConnexionPage() : JSX.Element {
     return (
         <>
         <div id="main_central_element">
