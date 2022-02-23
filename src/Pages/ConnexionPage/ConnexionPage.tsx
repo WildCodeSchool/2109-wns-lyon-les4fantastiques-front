@@ -23,7 +23,7 @@ export function ConnexionPage() : JSX.Element {
     <TextField id="Password" label="Password" variant="standard" sx={{ marginTop: 1 }} />
     <Stack spacing={2} direction="row"></Stack>
     <Button variant="contained" sx={{ marginTop: 3, width: '25ch' }}>Sign In</Button>
-    <Link to="/inscription">
+    <Link to="/inscription" style={{ color: '#027bce'}}>
     <p>No account yet ? Sign up here</p>
     </Link>
     </div>

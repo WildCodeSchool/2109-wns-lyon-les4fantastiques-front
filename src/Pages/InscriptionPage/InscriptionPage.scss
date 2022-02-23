@@ -6,9 +6,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 10%;
+
     h1 {
       color: $navyBlue;
     }
   }
+}
+
+.form_icons {
+  margin-left: 200;
+  margin-top: 25;
 }

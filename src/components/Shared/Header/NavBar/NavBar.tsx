@@ -1,6 +1,7 @@
 import React from 'react';
 import './NavBar.scss';
 import { Tabs, Box, Tab } from '@mui/material';
+import "../../../../scss/colors.scss"
 
 function NavBar() : JSX.Element {  
   const [value, setValue] = React.useState('one');
@@ -10,7 +11,9 @@ function NavBar() : JSX.Element {
   };
       
 	return(
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ 
+      width: '100%',
+     }}>
     <Tabs
       value={value}
       onChange={handleChange}

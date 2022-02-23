@@ -12,11 +12,29 @@ import './App.scss';
 import ProjectsListPage from './Pages/ProjectsListPage/ProjectsListPage';
 import TasksListPage from './Pages/TasksListPage/TasksListPage';
 import UsersManagementPage from './Pages/UsersManagementPage/UsersManagementPage';
+import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+
+
+const myTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: "#027bce",
+    },
+  },
+  typography: {
+    fontFamily: "Roboto-Black",
+  },
+});
 
 function App() {
 
   return (
     <>
+    <StyledEngineProvider>
+    <ThemeProvider theme={myTheme}>
+    <CssBaseline />
     <img src={EasyTicketLogo} id="EasyTicketLogo" alt="EasyTicketLogo" />
     <Router>
       <Routes>
@@ -29,6 +47,8 @@ function App() {
       <Route path="/users" element={<UsersManagementPage/>}></Route>
     </Routes>
     </Router>
+    </ThemeProvider>
+    </StyledEngineProvider>
     </>
   );
 }
