@@ -1,7 +1,6 @@
 import React from 'react';
 import './NavBar.scss';
 import { Tabs, Box, Tab } from '@mui/material';
-import "../../../../scss/colors.scss"
 
 function NavBar() : JSX.Element {  
   const [value, setValue] = React.useState('one');
@@ -11,9 +10,9 @@ function NavBar() : JSX.Element {
   };
       
 	return(
+    <div className='navbar-container'>
     <Box sx={{ 
-      width: '100%',
-     }}>
+      width: '100%'}}>
     <Tabs
       value={value}
       onChange={handleChange}
@@ -21,11 +20,13 @@ function NavBar() : JSX.Element {
       <Tab
         value="tasksList"
         label="TasksList" href="/tasks" 
+        sx={{marginLeft: 12}}
       />
       <Tab value="projectsList" label="ProjectsList" href="/projects"/>
       <Tab value="usersList" label="Users" href="/users"/>
     </Tabs>
   </Box>
+  </div>
 
 	);
 }

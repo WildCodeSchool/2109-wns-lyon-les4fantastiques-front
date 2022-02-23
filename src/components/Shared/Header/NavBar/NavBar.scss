@@ -1,1 +1,10 @@
 @import "../../../../scss/colors.scss";
+
+.navbar-container {
+  background-color: $backgroundGrey;
+  border-radius: 10px;
+  width: 500px;
+
+  /*shadow*/
+  box-shadow: $navyBlue 20px 10px 15px;
+}
