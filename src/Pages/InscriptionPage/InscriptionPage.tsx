@@ -56,31 +56,31 @@ export function InscriptionPage(): JSX.Element {
       autoComplete="off"
     ></Box>
     <Grid container direction="row" spacing={10} justifyContent="center" alignItems="center">
-      <Grid item xs={3} style={{marginRight:-50, marginTop:25}} ><PersonIcon color="primary"></PersonIcon></Grid>
-      <Grid item xs={9} ><TextField id="Firstname" label="Firstname" variant="standard" value={firstname} onChange={e => setFirstname(e.target.value)}/></Grid>
+      <Grid item xs={3} style={{marginRight:-50, marginTop:25}} ><PersonIcon color="secondary"></PersonIcon></Grid>
+      <Grid item xs={10} ><TextField id="Firstname" label="Firstname" variant="standard" value={firstname} onChange={e => setFirstname(e.target.value)}/></Grid>
     </Grid>
     <Grid container direction="row" spacing={10} justifyContent="center" alignItems="center">
-      <Grid item xs={3} style={{marginRight:-50,marginTop: 25}} ><PersonIcon color="primary"></PersonIcon></Grid>
-      <Grid item xs={9}><TextField id="Lastname" label="Lastname" variant="standard" sx={{ marginTop: 1 }} value={lastname} onChange={e => setLastname(e.target.value)}/></Grid>
+      <Grid item xs={3} style={{marginRight:-50,marginTop: 25}} ><PersonIcon color="secondary"></PersonIcon></Grid>
+      <Grid item xs={10}><TextField id="Lastname" label="Lastname" variant="standard" sx={{ marginTop: 1 }} value={lastname} onChange={e => setLastname(e.target.value)}/></Grid>
       </Grid>
     <Grid container direction="row" spacing={10} justifyContent="center" alignItems="center">
-      <Grid item xs={3} style={{marginRight:-50, marginTop:25}} ><AlternateEmailIcon color="primary"></AlternateEmailIcon></Grid>
-      <Grid item xs={9}><TextField id="Email" label="Email" variant="standard" sx={{ marginTop: 1 }} value={email} onChange={e => setEmail(e.target.value)}/></Grid>
+      <Grid item xs={3} style={{marginRight:-50, marginTop:25}} ><AlternateEmailIcon color="secondary"></AlternateEmailIcon></Grid>
+      <Grid item xs={10}><TextField id="Email" label="Email" variant="standard" sx={{ marginTop: 1 }} value={email} onChange={e => setEmail(e.target.value)}/></Grid>
     </Grid>
     <Grid container direction="row" spacing={10} justifyContent="center" alignItems="center">
-      <Grid item xs={3} style={{marginRight:-50, marginTop:25}} ><LockIcon color="primary"></LockIcon></Grid>
-      <Grid item xs={9}><TextField id="Password" label="Password" type="password"  variant="standard" sx={{ marginTop: 1 }} value={password} onChange={e => setPassword(e.target.value)}/></Grid>
+      <Grid item xs={3} style={{marginRight:-50, marginTop:25}} ><LockIcon color="secondary"></LockIcon></Grid>
+      <Grid item xs={10}><TextField id="Password" label="Password" type="password"  variant="standard" sx={{ marginTop: 1 }} value={password} onChange={e => setPassword(e.target.value)}/></Grid>
     </Grid>
     <Grid container direction="row" spacing={10} justifyContent="center" alignItems="center">
-      <Grid item xs={3} style={{marginRight:-50, marginTop:25}} ><LockIcon color="primary"></LockIcon></Grid>
-      <Grid item xs={9}><TextField id="Password Confirmation" label="Password Confirmation" type="password"  variant="standard" sx={{ marginTop: 1 }} value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)}/></Grid>
+      <Grid item xs={3} style={{marginRight:-50, marginTop:25}} ><LockIcon color="secondary"></LockIcon></Grid>
+      <Grid item xs={10}><TextField id="Password Confirmation" label="Password Confirmation" type="password"  variant="standard" sx={{ marginTop: 1 }} value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)}/></Grid>
     </Grid>
     </Grid>
     </Grid>
     <Stack spacing={2} direction="row"></Stack>
     <Button onClick={onSubmit} variant="contained" sx={{ marginTop: 3, width: '25ch' }} disabled={loading === true}>Sign Up</Button>
-    {error && <p>Error</p>}
-    <Link to="/connexion" style={{ color: '#027bce'}}>
+    {error && <p>Please fill out all fields completely. </p>}
+    <Link to="/connexion" style={{ color: '#027bce', textDecoration: "none"}}>
     <p>Always registred ? Sign in here</p>
     </Link>
     </div>

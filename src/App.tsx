@@ -14,19 +14,8 @@ import TasksListPage from './Pages/TasksListPage/TasksListPage';
 import UsersManagementPage from './Pages/UsersManagementPage/UsersManagementPage';
 import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+import { myTheme } from './Theme';
 
-
-const myTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: "#027bce",
-    },
-  },
-  typography: {
-    fontFamily: "Roboto-Black",
-  },
-});
 
 function App() {
 
