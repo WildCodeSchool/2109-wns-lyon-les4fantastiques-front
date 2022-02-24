@@ -12,9 +12,11 @@ import './App.scss';
 import ProjectsListPage from './Pages/ProjectsListPage/ProjectsListPage';
 import TasksListPage from './Pages/TasksListPage/TasksListPage';
 import UsersManagementPage from './Pages/UsersManagementPage/UsersManagementPage';
-import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { myTheme } from './Theme';
+import ProjectCreationPage from './Pages/ProjectCreationPage/ProjectCreationPage';
+import TaskCreationPage from './Pages/TaskCreationPage/TaskCreationPage';
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
       <Route path="/tasks" element={<TasksListPage/>}></Route>
       <Route path="/projects" element={<ProjectsListPage/>}></Route>
       <Route path="/users" element={<UsersManagementPage/>}></Route>
+      <Route path="/create/project" element={<ProjectCreationPage/>}></Route>
+      <Route path="/create/task" element={<TaskCreationPage/>}></Route>
     </Routes>
     </Router>
     </ThemeProvider>

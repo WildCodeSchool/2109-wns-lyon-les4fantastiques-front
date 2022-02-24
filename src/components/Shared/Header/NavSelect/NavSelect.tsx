@@ -7,6 +7,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Link } from 'react-router-dom';
 
 function NavSelect(): JSX.Element {
   const [open, setOpen] = React.useState(false);
@@ -82,9 +83,9 @@ function NavSelect(): JSX.Element {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>Create a Project</MenuItem>
-                    <MenuItem onClick={handleClose}>Create a Task</MenuItem>
-                    <MenuItem onClick={handleClose}>Sign Out</MenuItem>
+                    <MenuItem onClick={handleClose}><Link to='/create/project'>Create a Project</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to='/create/task'>Create a Task</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to='/'>Sign Out</Link></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
