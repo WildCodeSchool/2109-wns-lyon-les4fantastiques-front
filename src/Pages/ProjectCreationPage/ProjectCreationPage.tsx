@@ -1,6 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
 import { Box, Button, Grid, Stack, TextField } from '@mui/material';
-import { useState } from 'react';
 import Header from '../../components/Shared/Header/Header';
 import './ProjectCreationPage.scss';
 import PersonIcon from '@mui/icons-material/Person';
