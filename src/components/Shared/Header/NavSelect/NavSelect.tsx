@@ -83,9 +83,9 @@ function NavSelect(): JSX.Element {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}><Link to='/create/project'>Create a Project</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to='/create/task'>Create a Task</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to='/'>Sign Out</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to='/create/project' style={{ color: 'white', textDecoration: 'none'}}>Create a Project</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to='/create/task' style={{ color: 'white', textDecoration: 'none'}}>Create a Task</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to='/' style={{ color: 'white', textDecoration: 'none'}}>Sign Out</Link></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
