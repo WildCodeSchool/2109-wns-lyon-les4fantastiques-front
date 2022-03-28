@@ -11,7 +11,7 @@ import { ConnexionPage } from "./Pages/ConnexionPage/ConnexionPage";
 import WelcomePage from "./Pages/WelcomePage/WelcomePage";
 import Header from "./components/Shared/Header/Header";
 
-import EasyTicketLogo from "./assets/images/easy-ticket-logo.svg";
+import EasyTicketLogo from './assets/images/easy-ticket-logo.svg';
 
 import "./App.scss";
 import ProjectsListPage from "./Pages/ProjectsListPage/ProjectsListPage";

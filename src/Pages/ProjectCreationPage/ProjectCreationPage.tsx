@@ -40,7 +40,7 @@ function ProjectCreationPage() : JSX.Element {
   <Button variant="contained" sx={{ marginTop: 3, width: '25ch' }} id="button-add-member" > ADD MORE MEMBERS</Button>
   </Box>
 
-  <Button  variant="contained" sx={{ marginTop: 3, width: '25ch' }} id="button-confirm-creation">CONFIRM CREATION</Button>
+  <Button  variant="contained" sx={{ marginLeft: '60%', marginTop: '2%', width: '25ch' }} id="button-confirm-creation">CONFIRM CREATION</Button>
   </>
   )
 } 
