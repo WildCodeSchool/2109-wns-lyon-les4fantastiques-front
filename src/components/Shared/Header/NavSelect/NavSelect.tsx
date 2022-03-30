@@ -42,8 +42,8 @@ function NavSelect({ navigate }: IProps): JSX.Element {
   }
 
   const handleSignOut = () => {
-    signOut();
     navigate("/");
+    signOut();
   };
 
   // return focus to the button when we transitioned from !open -> open

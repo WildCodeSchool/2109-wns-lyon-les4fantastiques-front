@@ -11,8 +11,19 @@ interface IProps {
 const usersContext = React.createContext<IUsersContext>({} as IUsersContext);
 
 const UsersProvider = (props: IProps) => {
-  const [fetchCurrentUser, { data, error }] = useLazyQuery(GETCURRENTUSER);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [fetchCurrentUser] = useLazyQuery(GETCURRENTUSER, {
+    onCompleted: (data) => {
+      !localStorage.getItem("isLoggedIn") &&
+        localStorage.setItem("isLoggedIn", "true");
+      setCurrentUser(data.getSignedInUser);
+    },
+    onError: (error) => {
+      if (localStorage.getItem("token")) {
+        signOut();
+      }
+    },
+    fetchPolicy: "network-only",
+  });
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
 
   const signOut = () => {
@@ -23,20 +34,12 @@ const UsersProvider = (props: IProps) => {
 
   const getCurrentUser = useCallback(async () => {
     await fetchCurrentUser();
-    if (data?.getSignedInUser) {
-      localStorage.setItem("isLoggedIn", "true");
-      setCurrentUser(data.getSignedInUser);
-    } else if (error && localStorage.getItem("token")) {
-      signOut();
-    }
-  }, [data, fetchCurrentUser, error]);
+  }, [fetchCurrentUser]);
 
   const contextValue: IUsersContext = {
     signOut,
     currentUser,
     getCurrentUser,
-    isLoggedIn,
-    setIsLoggedIn,
   };
 
   return (

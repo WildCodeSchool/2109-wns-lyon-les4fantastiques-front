@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      if (!currentUser && localStorage.getItem("isLoggedIn") === "true") {
+      if (!currentUser && !!localStorage.getItem("isLoggedIn")) {
         await getCurrentUser();
       }
     })();

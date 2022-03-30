@@ -22,7 +22,7 @@ export function ConnexionPage(): JSX.Element {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [isFormCompleted, setIsFormCompleted] = useState(false);
-  const { getCurrentUser, setIsLoggedIn } = useContext(usersContext);
+  const { getCurrentUser } = useContext(usersContext);
   const navigate = useNavigate();
   const [doSignIn, { loading, error }] = useMutation(SIGNIN, {
     context: {
@@ -42,8 +42,8 @@ export function ConnexionPage(): JSX.Element {
       });
       if (res?.data.signin) {
         localStorage.setItem("token", res.data.signin);
+        localStorage.setItem("isLoggedIn", "true");
         await getCurrentUser();
-        setIsLoggedIn(true);
         navigate("/projects");
       } else {
         setLoginError("Your email or your password is incorrect");
