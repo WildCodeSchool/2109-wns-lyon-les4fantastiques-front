@@ -1,17 +1,21 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { Link } from 'react-router-dom';
-
-function NavSelect(): JSX.Element {
+import * as React from "react";
+import Button from "@mui/material/Button";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { Link, NavigateFunction } from "react-router-dom";
+import { usersContext } from "../../../../contexts/Users/UsersProvider";
+interface IProps {
+  navigate: NavigateFunction;
+}
+function NavSelect({ navigate }: IProps): JSX.Element {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
+  const { signOut, currentUser } = React.useContext(usersContext);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -29,13 +33,18 @@ function NavSelect(): JSX.Element {
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab') {
+    if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
-    } else if (event.key === 'Escape') {
+    } else if (event.key === "Escape") {
       setOpen(false);
     }
   }
+
+  const handleSignOut = () => {
+    signOut();
+    navigate("/");
+  };
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
@@ -48,51 +57,75 @@ function NavSelect(): JSX.Element {
   }, [open]);
 
   return (
-      <div>
-        <Button
-          ref={anchorRef}
-          id="composition-button"
-          aria-controls={open ? 'composition-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-        >
-          Welcome Dev <ArrowDropDownIcon></ArrowDropDownIcon>
-        </Button>
-        <Popper
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          placement="bottom-start"
-          transition
-          disablePortal
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === 'bottom-start' ? 'left top' : 'left bottom',
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={open}
-                    id="composition-menu"
-                    aria-labelledby="composition-button"
-                    onKeyDown={handleListKeyDown}
-                  >
-                    <MenuItem onClick={handleClose}><Link to='/create/project' style={{ color: 'white', textDecoration: 'none'}}>Create a Project</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to='/create/task' style={{ color: 'white', textDecoration: 'none'}}>Create a Task</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to='/' style={{ color: 'white', textDecoration: 'none'}}>Sign Out</Link></MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
+    <div>
+      <Button
+        ref={anchorRef}
+        id="composition-button"
+        aria-controls={open ? "composition-menu" : undefined}
+        aria-expanded={open ? "true" : undefined}
+        aria-haspopup="true"
+        onClick={handleToggle}
+      >
+        Welcome {currentUser?.firstname}
+        <ArrowDropDownIcon />
+      </Button>
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        placement="bottom-start"
+        transition
+        disablePortal
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === "bottom-start" ? "left top" : "left bottom",
+            }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  autoFocusItem={open}
+                  id="composition-menu"
+                  aria-labelledby="composition-button"
+                  onKeyDown={handleListKeyDown}
+                >
+                  {currentUser?.role !== "DEV" && (
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        to="/create/project"
+                        style={{ color: "white", textDecoration: "none" }}
+                      >
+                        Create a Project
+                      </Link>
+                    </MenuItem>
+                  )}
+                  <MenuItem onClick={handleClose}>
+                    <Link
+                      to="/create/task"
+                      style={{ color: "white", textDecoration: "none" }}
+                    >
+                      Create a Task
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <span
+                      onClick={handleSignOut}
+                      style={{ color: "white", textDecoration: "none" }}
+                    >
+                      Sign Out
+                    </span>
+                  </MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </div>
   );
 }
 
