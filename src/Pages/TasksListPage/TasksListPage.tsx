@@ -1,15 +1,15 @@
-import Header from '../../components/Shared/Header/Header';
-import './TasksListPage.scss';
+import Header from "../../components/Shared/Header/Header";
+import "./TasksListPage.scss";
 
-function TasksListPage() : JSX.Element {
-	return(
+function TasksListPage() {
+  return (
     <>
-    <Header></Header>
-    <div>
-      <p>TasksListPage</p>
-    </div>
+      <Header />
+      <div>
+        <p>TasksListPage</p>
+      </div>
     </>
-	);
-} 
+  );
+}
 
 export default TasksListPage;

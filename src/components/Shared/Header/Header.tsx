@@ -20,11 +20,7 @@ function Header(): JSX.Element {
           />
         </div>
         <div className="header--item">
-          <IconButton
-            size="large"
-            aria-label="show 2 new notifications"
-            color="inherit"
-          >
+          <IconButton size="large" aria-label="show 2 new notifications" color="inherit">
             <Badge badgeContent={2} color="error">
               <NotificationsIcon />
             </Badge>

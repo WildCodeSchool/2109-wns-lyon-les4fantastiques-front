@@ -13,19 +13,9 @@ import LockIcon from "@mui/icons-material/Lock";
 import { Grid } from "@mui/material";
 
 const registration = gql`
-  mutation signup(
-    $firstname: String!
-    $lastname: String!
-    $email: String!
-    $password: String!
-  ) {
+  mutation signup($firstname: String!, $lastname: String!, $email: String!, $password: String!) {
     signup(
-      data: {
-        firstname: $firstname
-        lastname: $lastname
-        email: $email
-        password: $password
-      }
+      data: { firstname: $firstname, lastname: $lastname, email: $email, password: $password }
     ) {
       id
       firstname
@@ -35,7 +25,7 @@ const registration = gql`
   }
 `;
 
-export function InscriptionPage(): JSX.Element {
+export function InscriptionPage() {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -46,9 +36,9 @@ export function InscriptionPage(): JSX.Element {
   const [doSignUp, { loading, error }] = useMutation(registration, {
     context: {
       headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    },
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
   });
 
   const onSubmit = async () => {
@@ -58,8 +48,8 @@ export function InscriptionPage(): JSX.Element {
           firstname: firstname,
           lastname: lastname,
           email: email,
-          password: password,
-        },
+          password: password
+        }
       });
       !loading && navigate("/connexion");
     } catch (error) {
@@ -69,29 +59,19 @@ export function InscriptionPage(): JSX.Element {
 
   useEffect(() => {
     setIsFormCompleted(
-      !!firstname &&
-        !!lastname &&
-        !!email &&
-        !!password &&
-        !!passwordConfirmation
+      !!firstname && !!lastname && !!email && !!password && !!passwordConfirmation
     );
   }, [firstname, lastname, email, password, passwordConfirmation]);
 
   return (
     <>
       <div id="main_central_element">
-        <Grid
-          container
-          spacing={0}
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid container spacing={0} direction="column" justifyContent="center" alignItems="center">
           <Grid item>
             <Box
               component="form"
               sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
+                "& > :not(style)": { m: 1, width: "25ch" }
               }}
               noValidate
               autoComplete="off"
@@ -214,10 +194,7 @@ export function InscriptionPage(): JSX.Element {
           Sign Up
         </Button>
         {error && <p>Please fill out all fields completely. </p>}
-        <Link
-          to="/connexion"
-          style={{ color: "#027bce", textDecoration: "none" }}
-        >
+        <Link to="/connexion" style={{ color: "#027bce", textDecoration: "none" }}>
           <p>Already registred ? Sign in here</p>
         </Link>
       </div>
