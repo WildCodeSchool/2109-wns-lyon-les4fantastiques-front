@@ -1,5 +1,10 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 
 import { InscriptionPage } from "./Pages/InscriptionPage/InscriptionPage";
 import { ConnexionPage } from "./Pages/ConnexionPage/ConnexionPage";
@@ -17,8 +22,20 @@ import { CssBaseline } from "@mui/material";
 import { myTheme } from "./Theme";
 import ProjectCreationPage from "./Pages/ProjectCreationPage/ProjectCreationPage";
 import TaskCreationPage from "./Pages/TaskCreationPage/TaskCreationPage";
+import { usersContext } from "./contexts/Users/UsersProvider";
+import GuardedRoute from "./components/Shared/GuardedRoute/GuardedRoute";
 
 function App() {
+  const { currentUser, getCurrentUser } = useContext(usersContext);
+
+  useEffect(() => {
+    (async () => {
+      if (!currentUser && localStorage.getItem("isLoggedIn") === "true") {
+        await getCurrentUser();
+      }
+    })();
+  }, [currentUser, getCurrentUser]);
+
   return (
     <>
       <StyledEngineProvider>
@@ -32,10 +49,18 @@ function App() {
               <Route path="/connexion" element={<ConnexionPage />} />
               <Route path="/header" element={<Header />} />
               <Route path="/tasks" element={<TasksListPage />} />
-              <Route path="/projects" element={<ProjectsListPage />} />
+              <Route
+                path="/projects"
+                element={
+                  <GuardedRoute>
+                    <ProjectsListPage />
+                  </GuardedRoute>
+                }
+              />
               <Route path="/users" element={<UsersManagementPage />} />
               <Route path="/create/project" element={<ProjectCreationPage />} />
               <Route path="/create/task" element={<TaskCreationPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Router>
         </ThemeProvider>

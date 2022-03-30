@@ -10,6 +10,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import reportWebVitals from "./reportWebVitals";
+import UsersProvider from "./contexts/Users/UsersProvider";
 
 const httpLink = createHttpLink({
   uri: "http://127.0.0.1:4000/graphql",
@@ -22,7 +23,8 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `${token}` : "",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -35,7 +37,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <UsersProvider>
+        <App />
+      </UsersProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")

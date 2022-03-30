@@ -1,16 +1,22 @@
-import React from 'react';
-import Header from '../../components/Shared/Header/Header';
-import './ProjectsListPage.scss';
+import React, { useContext, useEffect } from "react";
+import Header from "../../components/Shared/Header/Header";
+import { usersContext } from "../../contexts/Users/UsersProvider";
+import "./ProjectsListPage.scss";
 
-function ProjectsListPage() : JSX.Element {
-	return(
-        <>
-        <Header></Header>
-        <div>
-          <p>ProjectsListPage</p>
-        </div>
-        </>
-	);
-} 
+function ProjectsListPage(): JSX.Element {
+  const { currentUser } = useContext(usersContext);
+  return (
+    <>
+      <>
+        <Header />
+        {currentUser && (
+          <div>
+            <p>ProjectsListPage</p>
+          </div>
+        )}
+      </>
+    </>
+  );
+}
 
 export default ProjectsListPage;
