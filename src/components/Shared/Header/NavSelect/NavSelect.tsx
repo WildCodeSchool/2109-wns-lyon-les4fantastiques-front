@@ -22,10 +22,7 @@ function NavSelect({ navigate }: IProps): JSX.Element {
   };
 
   const handleClose = (event: Event | React.SyntheticEvent) => {
-    if (
-      anchorRef.current &&
-      anchorRef.current.contains(event.target as HTMLElement)
-    ) {
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
 
@@ -81,8 +78,7 @@ function NavSelect({ navigate }: IProps): JSX.Element {
           <Grow
             {...TransitionProps}
             style={{
-              transformOrigin:
-                placement === "bottom-start" ? "left top" : "left bottom",
+              transformOrigin: placement === "bottom-start" ? "left top" : "left bottom"
             }}
           >
             <Paper>
@@ -95,19 +91,13 @@ function NavSelect({ navigate }: IProps): JSX.Element {
                 >
                   {currentUser?.role !== "DEV" && (
                     <MenuItem onClick={handleClose}>
-                      <Link
-                        to="/create/project"
-                        style={{ color: "white", textDecoration: "none" }}
-                      >
+                      <Link to="/create/project" style={{ color: "white", textDecoration: "none" }}>
                         Create a Project
                       </Link>
                     </MenuItem>
                   )}
                   <MenuItem onClick={handleClose}>
-                    <Link
-                      to="/create/task"
-                      style={{ color: "white", textDecoration: "none" }}
-                    >
+                    <Link to="/create/task" style={{ color: "white", textDecoration: "none" }}>
                       Create a Task
                     </Link>
                   </MenuItem>

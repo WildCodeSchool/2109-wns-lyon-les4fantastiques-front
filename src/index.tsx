@@ -2,18 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import {
-  ApolloClient,
-  ApolloProvider,
-  createHttpLink,
-  InMemoryCache,
-} from "@apollo/client";
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import reportWebVitals from "./reportWebVitals";
 import UsersProvider from "./contexts/Users/UsersProvider";
 
 const httpLink = createHttpLink({
-  uri: "http://127.0.0.1:4000/graphql",
+  uri: "http://127.0.0.1:4000/graphql"
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -24,14 +19,14 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       "Access-Control-Allow-Origin": "*",
-      Authorization: token ? `Bearer ${token}` : "",
-    },
+      Authorization: token ? `Bearer ${token}` : ""
+    }
   };
 });
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 ReactDOM.render(
