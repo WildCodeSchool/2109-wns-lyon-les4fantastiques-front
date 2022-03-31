@@ -1,4 +1,3 @@
-import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 
 import { InscriptionPage } from "./Pages/InscriptionPage/InscriptionPage";
@@ -17,20 +16,9 @@ import { CssBaseline } from "@mui/material";
 import { myTheme } from "./Theme";
 import ProjectCreationPage from "./Pages/ProjectCreationPage/ProjectCreationPage";
 import TaskCreationPage from "./Pages/TaskCreationPage/TaskCreationPage";
-import { usersContext } from "./contexts/Users/UsersProvider";
 import GuardedRoute from "./components/Shared/GuardedRoute/GuardedRoute";
 
 function App() {
-  const { currentUser, getCurrentUser } = useContext(usersContext);
-
-  useEffect(() => {
-    (async () => {
-      if (!currentUser && !!localStorage.getItem("isLoggedIn")) {
-        await getCurrentUser();
-      }
-    })();
-  }, [currentUser, getCurrentUser]);
-
   return (
     <>
       <StyledEngineProvider>
