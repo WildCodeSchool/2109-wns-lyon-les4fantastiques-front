@@ -5,8 +5,11 @@ import NavSelect from "./NavSelect/NavSelect";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Badge, IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../contexts/Auth/AuthProvider";
 
 function Header(): JSX.Element {
+  // eslint-disable-next-line no-unused-vars
+  const { currentUser, isConnected, checkLogin } = useAuth();
   const navigate = useNavigate();
   return (
     <>
@@ -27,10 +30,10 @@ function Header(): JSX.Element {
           </IconButton>
         </div>
         <div className="header--item">
-          <NavBar />
+          <NavBar currentUser={currentUser} />
         </div>
         <div className="header--item">
-          <NavSelect navigate={navigate} />
+          <NavSelect navigate={navigate} currentUser={currentUser} />
         </div>
       </div>
     </>

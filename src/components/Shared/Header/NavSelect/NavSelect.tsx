@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { SyntheticEvent, useEffect, useRef, useState, KeyboardEvent } from "react";
 import Button from "@mui/material/Button";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
@@ -8,20 +8,22 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Link, NavigateFunction } from "react-router-dom";
-import { usersContext } from "../../../../contexts/Users/UsersProvider";
+import { IUser } from "../../../../contexts/Users/types";
+import { useAuth } from "../../../../contexts/Auth/AuthProvider";
 interface IProps {
   navigate: NavigateFunction;
+  currentUser: IUser;
 }
-function NavSelect({ navigate }: IProps): JSX.Element {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
-  const { signOut, currentUser } = React.useContext(usersContext);
+function NavSelect({ navigate, currentUser }: IProps): JSX.Element {
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef<HTMLButtonElement>(null);
+  const { signOut } = useAuth();
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event: Event | React.SyntheticEvent) => {
+  const handleClose = (event: Event | SyntheticEvent) => {
     if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
@@ -29,7 +31,7 @@ function NavSelect({ navigate }: IProps): JSX.Element {
     setOpen(false);
   };
 
-  function handleListKeyDown(event: React.KeyboardEvent) {
+  function handleListKeyDown(event: KeyboardEvent) {
     if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
@@ -44,8 +46,8 @@ function NavSelect({ navigate }: IProps): JSX.Element {
   };
 
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
+  const prevOpen = useRef(open);
+  useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus();
     }

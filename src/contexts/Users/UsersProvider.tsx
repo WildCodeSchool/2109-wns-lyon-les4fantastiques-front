@@ -1,7 +1,7 @@
 import { useLazyQuery } from "@apollo/client";
 import React, { useCallback, useState } from "react";
 import { ReactNode } from "react";
-import { GETCURRENTUSER } from "./requests/getCurrentUser";
+import { GETCURRENTUSER } from "../Auth/gql/getCurrentUser";
 import { IUser, IUsersContext } from "./types";
 
 interface IProps {

@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./NavBar.scss";
 import { Tabs, Box, Tab } from "@mui/material";
 import { Link } from "react-router-dom";
-import { usersContext } from "../../../../contexts/Users/UsersProvider";
+import { IUser } from "../../../../contexts/Users/types";
+interface IProps {
+  currentUser: IUser;
+}
 
-function NavBar(): JSX.Element {
+function NavBar({ currentUser }: IProps): JSX.Element {
   const [value, setValue] = React.useState("");
-  const { currentUser } = useContext(usersContext);
 
   const handleChange = (event: any, newValue: React.SetStateAction<string>) => {
     setValue(newValue);
