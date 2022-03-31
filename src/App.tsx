@@ -1,10 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 
 import { InscriptionPage } from "./Pages/InscriptionPage/InscriptionPage";
 import { ConnexionPage } from "./Pages/ConnexionPage/ConnexionPage";
@@ -30,7 +25,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      if (!currentUser && localStorage.getItem("isLoggedIn") === "true") {
+      if (!currentUser && !!localStorage.getItem("isLoggedIn")) {
         await getCurrentUser();
       }
     })();

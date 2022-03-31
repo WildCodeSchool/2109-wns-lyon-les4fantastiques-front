@@ -17,19 +17,19 @@ const SIGNIN = gql`
   }
 `;
 
-export function ConnexionPage(): JSX.Element {
+export function ConnexionPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [isFormCompleted, setIsFormCompleted] = useState(false);
-  const { getCurrentUser, setIsLoggedIn } = useContext(usersContext);
+  const { getCurrentUser } = useContext(usersContext);
   const navigate = useNavigate();
   const [doSignIn, { loading, error }] = useMutation(SIGNIN, {
     context: {
       headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    },
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
   });
 
   const onSubmit = async () => {
@@ -37,13 +37,13 @@ export function ConnexionPage(): JSX.Element {
       const res = await doSignIn({
         variables: {
           email: email,
-          password: password,
-        },
+          password: password
+        }
       });
       if (res?.data.signin) {
         localStorage.setItem("token", res.data.signin);
+        localStorage.setItem("isLoggedIn", "true");
         await getCurrentUser();
-        setIsLoggedIn(true);
         navigate("/projects");
       } else {
         setLoginError("Your email or your password is incorrect");
@@ -60,18 +60,12 @@ export function ConnexionPage(): JSX.Element {
   return (
     <>
       <div id="main_central_element">
-        <Grid
-          container
-          spacing={2}
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid container spacing={2} direction="column" justifyContent="center" alignItems="center">
           <Grid item spacing={3}>
             <Box
               component="form"
               sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
+                "& > :not(style)": { m: 1, width: "25ch" }
               }}
               noValidate
               autoComplete="off"
@@ -128,13 +122,7 @@ export function ConnexionPage(): JSX.Element {
               alignItems="center"
             >
               <Stack spacing={3} direction="row" />
-              <Grid
-                item
-                xs={3}
-                container
-                direction="column"
-                alignItems="center"
-              >
+              <Grid item xs={3} container direction="column" alignItems="center">
                 {error && <p>An error occured, please try again later</p>}
                 {loginError && <p className="error">{loginError}</p>}
                 <Button
@@ -148,10 +136,7 @@ export function ConnexionPage(): JSX.Element {
               </Grid>
 
               <Grid item xs={2}>
-                <Link
-                  to="/inscription"
-                  style={{ color: "#027bce", textDecoration: "none" }}
-                >
+                <Link to="/inscription" style={{ color: "#027bce", textDecoration: "none" }}>
                   <p>No account yet ? Sign up here</p>
                 </Link>
               </Grid>

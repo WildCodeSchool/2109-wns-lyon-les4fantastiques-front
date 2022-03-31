@@ -1,16 +1,16 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from "@mui/material";
 
 export const myTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: "#027bce",
-      },
-      secondary: {
-          main: "#06d6a0",
-      }
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#027bce"
     },
-    typography: {
-      fontFamily: "Sofia Regular",
-    },
-  });
+    secondary: {
+      main: "#06d6a0"
+    }
+  },
+  typography: {
+    fontFamily: "Sofia Regular"
+  }
+});

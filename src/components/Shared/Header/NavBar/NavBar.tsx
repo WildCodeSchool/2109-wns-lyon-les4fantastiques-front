@@ -17,7 +17,7 @@ function NavBar(): JSX.Element {
       <Box
         sx={{
           width: "100%",
-          marginLeft: 6,
+          marginLeft: 6
         }}
       >
         <Tabs
