@@ -1,9 +1,9 @@
 @import "../../../scss/colors.scss";
 
 .main-header-container {
-  margin-top: 3%;
-  margin-left: 2%;
-  margin-right: 5%;
+  background-color: $backgroundGrey;
+  width: 100%;
+  padding: 2%;
   //gestion flexbox
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -23,6 +23,8 @@
   -webkit-align-items: flex-start;
   -ms-flex-align: start;
   align-items: flex-start;
+  position: sticky;
+  top: 0;
 }
 
 .header--item {
