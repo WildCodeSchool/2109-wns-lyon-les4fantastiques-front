@@ -9,7 +9,7 @@ import { useAuth } from "../../../contexts/Auth/AuthProvider";
 
 function Header(): JSX.Element {
   // eslint-disable-next-line no-unused-vars
-  const { currentUser, isConnected, checkLogin } = useAuth();
+  const { currentUser } = useAuth();
   const navigate = useNavigate();
   return (
     <>
