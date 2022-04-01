@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 export interface IUsersContext {
-  currentUser: IUser | null;
-  getCurrentUser: () => Promise<void>;
   users: IUser[];
   getAllUsers: () => Promise<void>;
-  signOut: () => void;
+  updateUserRole: (id: number, role: string) => Promise<boolean>;
+  deleteUser: (id: number) => Promise<boolean>;
 }
 
 export interface IUser {
