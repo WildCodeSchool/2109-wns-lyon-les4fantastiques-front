@@ -30,7 +30,7 @@ export function ConnexionPage() {
     <>
       <div id="main_central_element">
         <Grid container spacing={2} direction="column" justifyContent="center" alignItems="center">
-          <Grid item spacing={3}>
+          <Grid item>
             <Box
               component="form"
               sx={{

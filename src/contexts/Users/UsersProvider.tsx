@@ -1,8 +1,9 @@
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import React, { useCallback, useState } from "react";
 import { ReactNode } from "react";
-import { GETCURRENTUSER } from "../Auth/gql/getCurrentUser";
-import { IUser, IUsersContext } from "./types";
+import { DELETEUSER, UPDATEUSERROLE } from "./gql/mutations";
+import { GETALLUSERS } from "./gql/queries";
+import { IUsersContext } from "./types";
 
 interface IProps {
   children: ReactNode;
@@ -11,34 +12,55 @@ interface IProps {
 const usersContext = React.createContext<IUsersContext>({} as IUsersContext);
 
 const UsersProvider = (props: IProps) => {
-  const [fetchCurrentUser] = useLazyQuery(GETCURRENTUSER, {
-    onCompleted: (data) => {
-      !localStorage.getItem("isLoggedIn") && localStorage.setItem("isLoggedIn", "true");
-      setCurrentUser(data.getSignedInUser);
-    },
-    onError: () => {
-      if (localStorage.getItem("token")) {
-        signOut();
-      }
-    },
-    fetchPolicy: "network-only"
-  });
-  const [currentUser, setCurrentUser] = useState<IUser | null>(null);
+  const [users, setUsers] = useState([]);
+  const [doUpdateRole] = useMutation(UPDATEUSERROLE);
+  const [doDeleteUser] = useMutation(DELETEUSER);
 
-  const signOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("isLoggedIn");
-    setCurrentUser(null);
+  const [fetchAllUsers] = useLazyQuery(GETALLUSERS, {
+    onCompleted: (data) => {
+      setUsers(data.getUsers);
+    }
+  });
+
+  const getAllUsers = useCallback(async () => {
+    await fetchAllUsers();
+  }, []);
+
+  const updateUserRole = async (id: number, role: string): Promise<boolean> => {
+    try {
+      const res = await doUpdateRole({
+        variables: {
+          id: id,
+          role: role
+        }
+      });
+      if (res.data.updateRole) {
+        return true;
+      } else return false;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
   };
 
-  const getCurrentUser = useCallback(async () => {
-    await fetchCurrentUser();
-  }, [fetchCurrentUser]);
+  const deleteUser = async (id: number): Promise<boolean> => {
+    try {
+      await doDeleteUser({
+        variables: {
+          id: id
+        }
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
 
   const contextValue: IUsersContext = {
-    signOut,
-    currentUser,
-    getCurrentUser
+    getAllUsers,
+    users,
+    updateUserRole,
+    deleteUser
   };
 
   return <usersContext.Provider value={contextValue}>{props.children}</usersContext.Provider>;

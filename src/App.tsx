@@ -29,6 +29,7 @@ function App() {
             <Routes>
               <Route path="/" element={<WelcomePage />} />
               <Route path="/inscription" element={<InscriptionPage />} />
+              <Route path="/users" element={<UsersManagementPage />} />
               <Route path="/connexion" element={<ConnexionPage />} />
               <Route path="/header" element={<Header />} />
               <Route path="/tasks" element={<TasksListPage />} />
@@ -40,7 +41,6 @@ function App() {
                   </GuardedRoute>
                 }
               />
-              <Route path="/users" element={<UsersManagementPage />} />
               <Route path="/create/project" element={<ProjectCreationPage />} />
               <Route path="/create/task" element={<TaskCreationPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />

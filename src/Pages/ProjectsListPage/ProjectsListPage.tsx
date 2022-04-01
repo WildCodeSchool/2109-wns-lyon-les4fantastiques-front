@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import Header from "../../components/Shared/Header/Header";
-import { usersContext } from "../../contexts/Users/UsersProvider";
+import { useAuth } from "../../contexts/Auth/AuthProvider";
 import "./ProjectsListPage.scss";
 
 function ProjectsListPage() {
-  const { currentUser } = useContext(usersContext);
+  const { currentUser } = useAuth();
   return (
     <>
       <>

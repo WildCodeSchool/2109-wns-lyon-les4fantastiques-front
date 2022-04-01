@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./NavBar.scss";
 import { Tabs, Box, Tab } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -8,12 +8,11 @@ interface IProps {
 }
 
 function NavBar({ currentUser }: IProps): JSX.Element {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState("/tasks");
 
-  const handleChange = (event: any, newValue: React.SetStateAction<string>) => {
-    setValue(newValue);
-  };
-
+  useEffect(() => {
+    setValue(window.location.pathname);
+  }, [window]);
   return (
     <div className="navbar-container">
       <Box
@@ -22,34 +21,23 @@ function NavBar({ currentUser }: IProps): JSX.Element {
           marginLeft: 6
         }}
       >
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          textColor="secondary"
-          indicatorColor="secondary"
-        >
+        <Tabs value={value} textColor="secondary" indicatorColor="secondary">
           <Tab
-            value="tasksList"
+            value="/tasks"
             label="TasksList"
             className="nav--item"
             component={Link}
             to="/tasks"
           />
           <Tab
-            value="projectsList"
-            label="ProjectsList"
+            value="/projects"
+            label="projects"
             className="nav--item"
             component={Link}
             to="/projects"
           />
           {currentUser?.role === "ADMIN" && (
-            <Tab
-              value="usersList"
-              label="Users"
-              className="nav--item"
-              component={Link}
-              to="/users"
-            />
+            <Tab value="/users" label="users" className="nav--item" component={Link} to="/users" />
           )}
         </Tabs>
       </Box>
