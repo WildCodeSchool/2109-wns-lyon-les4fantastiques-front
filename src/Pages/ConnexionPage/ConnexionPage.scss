@@ -1,0 +1,17 @@
+@import "../../scss/colors.scss";
+
+body {
+  #main_central_element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    h1 {
+      color: $navyBlue;
+    }
+  }
+  .error {
+    color: $pink;
+  }
+}
