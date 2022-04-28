@@ -1,8 +1,9 @@
 import { gql } from "@apollo/client";
 
-export const GETCURRENTUSER = gql`
+export const GETALLUSERS = gql`
   query {
-    getSignedInUser {
+    getUsers {
+      id
       firstname
       lastname
       role

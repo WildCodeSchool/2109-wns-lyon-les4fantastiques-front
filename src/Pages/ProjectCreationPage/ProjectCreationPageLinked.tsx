@@ -1,20 +1,16 @@
-import { gql, useMutation } from "@apollo/client";
-import { Box, Button, Grid, Stack, TextField } from "@mui/material";
-import { useState } from "react";
 import Header from "../../components/Shared/Header/Header";
 import "./ProjectCreationPage.scss";
-import PersonIcon from "@mui/icons-material/Person";
 
-const createProject = gql`
-mutation ($name: String!, $timeEstimation: number) {
-  createProject(data: {$name: String!, $timeEstimation: number}) {
-    id
-    name
-    isClosed
-    timeEstimation
-  }
-}
-`;
+// const createProject = gql`
+// mutation ($name: String!, $timeEstimation: number) {
+//   createProject(data: {$name: String!, $timeEstimation: number}) {
+//     id
+//     name
+//     isClosed
+//     timeEstimation
+//   }
+// }
+// `;
 
 function ProjectCreationPageLinked(): JSX.Element {
   /*const [name, setName] = useState('');
