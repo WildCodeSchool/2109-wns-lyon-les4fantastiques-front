@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { IUser } from "../Users/types";
 
 export interface IAuthContext {
@@ -5,9 +6,16 @@ export interface IAuthContext {
   setIsConnected: Function;
   checkLogin: Function;
   currentUser: IUser;
-  // eslint-disable-next-line no-unused-vars
   handleSignIn: (email: string, password: string) => Promise<void>;
+  handleSignUp: (payload: ISignUpPayload) => Promise<void>;
   error: string;
   isLoading: boolean;
   signOut: () => void;
+}
+
+export interface ISignUpPayload {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
 }
