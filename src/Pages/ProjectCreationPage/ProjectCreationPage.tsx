@@ -4,11 +4,18 @@ import "./ProjectCreationPage.scss";
 import PersonIcon from "@mui/icons-material/Person";
 import TimerIcon from "@mui/icons-material/Timer";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
+import { useState } from "react";
 
 function ProjectCreationPage(): JSX.Element {
+  const [title, setTitle] = useState("");
+  const [timeEstimee, setTimeEstimee] = useState("0");
+  const [productOwner, setProductOwner] = useState("");
+  const [firstMember, setFirstMember] = useState("");
+  const [secondMember, setSecondMember] = useState("");
+
   return (
     <>
-      <Header></Header>
+      <Header />
       <Box
         sx={{ width: "60%", backgroundColor: "#027bce", borderRadius: "5px" }}
         id="project-creation-box"
@@ -23,10 +30,16 @@ function ProjectCreationPage(): JSX.Element {
               alignItems="center"
             >
               <Grid item xs={3} style={{ marginRight: -50, marginTop: 25 }}>
-                <FolderOpenIcon color="secondary"></FolderOpenIcon>
+                <FolderOpenIcon color="secondary" />
               </Grid>
               <Grid item xs={10}>
-                <TextField id="name" label="Project Title" variant="standard" />
+                <TextField
+                  id="name"
+                  label="Project Title"
+                  variant="standard"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
               </Grid>
             </Grid>
             <Grid
@@ -37,7 +50,7 @@ function ProjectCreationPage(): JSX.Element {
               alignItems="center"
             >
               <Grid item xs={3} style={{ marginRight: -50, marginTop: 25 }}>
-                <TimerIcon color="secondary"></TimerIcon>
+                <TimerIcon color="secondary" />
               </Grid>
               <Grid item xs={10}>
                 <TextField
@@ -45,6 +58,14 @@ function ProjectCreationPage(): JSX.Element {
                   label="Initial Time Estimee"
                   variant="standard"
                   sx={{ marginTop: 1 }}
+                  type="number"
+                  value={timeEstimee}
+                  onChange={(e) => {
+                    parseInt(e.target.value) && setTimeEstimee(e.target.value);
+                  }}
+                  inputProps={{
+                    min: "0"
+                  }}
                 />
               </Grid>
             </Grid>
@@ -56,7 +77,7 @@ function ProjectCreationPage(): JSX.Element {
               alignItems="center"
             >
               <Grid item xs={3} style={{ marginRight: -50, marginTop: 25 }}>
-                <PersonIcon color="secondary"></PersonIcon>
+                <PersonIcon color="secondary" />
               </Grid>
               <Grid item xs={10}>
                 <TextField
@@ -64,6 +85,8 @@ function ProjectCreationPage(): JSX.Element {
                   label="Project Owner"
                   variant="standard"
                   sx={{ marginTop: 1 }}
+                  value={productOwner}
+                  onChange={(e) => setProductOwner(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -75,14 +98,16 @@ function ProjectCreationPage(): JSX.Element {
               alignItems="center"
             >
               <Grid item xs={3} style={{ marginRight: -50, marginTop: 25 }}>
-                <PersonIcon color="secondary"></PersonIcon>
+                <PersonIcon color="secondary" />
               </Grid>
               <Grid item xs={10}>
                 <TextField
                   id="Project Members"
-                  label="Project Member"
+                  label="Project Member Email"
                   variant="standard"
                   sx={{ marginTop: 1 }}
+                  value={firstMember}
+                  onChange={(e) => setFirstMember(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -94,22 +119,23 @@ function ProjectCreationPage(): JSX.Element {
               alignItems="center"
             >
               <Grid item xs={3} style={{ marginRight: -50, marginTop: 25 }}>
-                <PersonIcon color="secondary"></PersonIcon>
+                <PersonIcon color="secondary" />
               </Grid>
               <Grid item xs={10}>
                 <TextField
                   id="Project Members"
-                  label="Project Member"
+                  label="Project Member Email"
                   variant="standard"
                   sx={{ marginTop: 1 }}
+                  value={secondMember}
+                  onChange={(e) => setSecondMember(e.target.value)}
                 />
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-        <Stack spacing={2} direction="row"></Stack>
+        <Stack spacing={2} direction="row" />
         <Button variant="contained" sx={{ marginTop: 3, width: "25ch" }} id="button-add-member">
-          {" "}
           ADD MORE MEMBERS
         </Button>
       </Box>
