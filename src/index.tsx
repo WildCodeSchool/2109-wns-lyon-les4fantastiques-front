@@ -7,9 +7,10 @@ import { setContext } from "@apollo/client/link/context";
 import reportWebVitals from "./reportWebVitals";
 import UsersProvider from "./contexts/Users/UsersProvider";
 import AuthProvider from "./contexts/Auth/AuthProvider";
+import ProjectsProvider from "./contexts/Projects/ProjectsProvider";
 
 const httpLink = createHttpLink({
-  uri: "http://127.0.0.1:4000/graphql"
+  uri: "http://127.0.0.1:4001/graphql"
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -35,7 +36,9 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <AuthProvider>
         <UsersProvider>
-          <App />
+          <ProjectsProvider>
+            <App />
+          </ProjectsProvider>
         </UsersProvider>
       </AuthProvider>
     </ApolloProvider>
