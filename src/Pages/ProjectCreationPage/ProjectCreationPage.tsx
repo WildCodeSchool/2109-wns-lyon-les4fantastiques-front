@@ -1,17 +1,45 @@
-import { Box, Button, Grid, Stack, TextField } from "@mui/material";
+import { Box, Button, Grid, TextField } from "@mui/material";
 import Header from "../../components/Shared/Header/Header";
 import "./ProjectCreationPage.scss";
 import PersonIcon from "@mui/icons-material/Person";
 import TimerIcon from "@mui/icons-material/Timer";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { projectsContext } from "../../contexts/Projects/ProjectsProvider";
+import { useNavigate } from "react-router-dom";
 
 function ProjectCreationPage(): JSX.Element {
   const [title, setTitle] = useState("");
-  const [timeEstimee, setTimeEstimee] = useState("0");
+  const [timeEstimation, setTimeEstimation] = useState("0");
   const [productOwner, setProductOwner] = useState("");
   const [firstMember, setFirstMember] = useState("");
   const [secondMember, setSecondMember] = useState("");
+  const [isFormComplete, setIsFormComplete] = useState(false);
+  const [error, setError] = useState("");
+
+  const { createProject, isLoading } = useContext(projectsContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsFormComplete(title !== "" && timeEstimation !== "0" && productOwner !== "");
+  }, [title, timeEstimation, productOwner]);
+
+  const submitForm = async () => {
+    const projectBody = {
+      name: title,
+      timeEstimation: parseInt(timeEstimation)
+    };
+    const members = [{ email: productOwner, role: "PO" }];
+    firstMember && members.push({ email: firstMember, role: "DEV" });
+    secondMember && members.push({ email: secondMember, role: "DEV" });
+    const res = await createProject(projectBody, members);
+
+    if (res) {
+      navigate("/projects");
+    } else {
+      setError("Unable to create project");
+    }
+  };
 
   return (
     <>
@@ -59,9 +87,9 @@ function ProjectCreationPage(): JSX.Element {
                   variant="standard"
                   sx={{ marginTop: 1 }}
                   type="number"
-                  value={timeEstimee}
+                  value={timeEstimation}
                   onChange={(e) => {
-                    parseInt(e.target.value) && setTimeEstimee(e.target.value);
+                    parseInt(e.target.value) && setTimeEstimation(e.target.value);
                   }}
                   inputProps={{
                     min: "0"
@@ -134,16 +162,19 @@ function ProjectCreationPage(): JSX.Element {
             </Grid>
           </Grid>
         </Grid>
-        <Stack spacing={2} direction="row" />
+        {/* <Stack spacing={2} direction="row" />
         <Button variant="contained" sx={{ marginTop: 3, width: "25ch" }} id="button-add-member">
           ADD MORE MEMBERS
-        </Button>
+        </Button> */}
       </Box>
-
+      {isLoading && <p style={{ textAlign: "center" }}>Creating project...</p>}
+      {error && <p style={{ textAlign: "center" }}>{error}</p>}
       <Button
         variant="contained"
         sx={{ marginLeft: "60%", marginTop: "2%", width: "25ch" }}
         id="button-confirm-creation"
+        onClick={submitForm}
+        disabled={!isFormComplete && !isLoading}
       >
         CONFIRM CREATION
       </Button>
