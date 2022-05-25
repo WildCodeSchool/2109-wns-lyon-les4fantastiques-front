@@ -1,7 +1,8 @@
-import { useMutation } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { createContext, ReactNode, useState } from "react";
 import { ADDUSERTOPROJECT, CREATEPROJECT } from "./gql/mutations";
-import { IProjectInput, IProjectsContext, IUserInput } from "./types";
+import { FETCHPROJECTS } from "./gql/queries";
+import { IProject, IProjectInput, IProjectsContext, IUserInput } from "./types";
 
 interface IProps {
   children: ReactNode;
@@ -10,9 +11,21 @@ interface IProps {
 const projectsContext = createContext<IProjectsContext>({} as IProjectsContext);
 
 const ProjectsProvider = (props: IProps) => {
+  const [projects, setProjects] = useState<IProject[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
   const [doCreateProject] = useMutation(CREATEPROJECT);
   const [doAddUserToProject] = useMutation(ADDUSERTOPROJECT);
+
+  const [fetchProjects] = useLazyQuery(FETCHPROJECTS, {
+    onCompleted: (data) => {
+      setProjects(data.getProjects);
+    }
+  });
+
+  const getProjects = (): void => {
+    fetchProjects();
+  };
 
   const createProject = async (projectToCreate: IProjectInput, users: IUserInput[]) => {
     setIsLoading(true);
@@ -44,7 +57,9 @@ const ProjectsProvider = (props: IProps) => {
 
   const contextValue: IProjectsContext = {
     createProject,
-    isLoading
+    isLoading,
+    getProjects,
+    projects
   };
 
   return <projectsContext.Provider value={contextValue}>{props.children}</projectsContext.Provider>;
