@@ -10,3 +10,31 @@ export const FETCHPROJECTS = gql`
     }
   }
 `;
+
+export const FETCHPROJECTBYID = gql`
+  query ($id: ID!) {
+    getProject(id: $id) {
+      id
+      timeEstimation
+      timeSpent
+      userProject {
+        role
+        user {
+          id
+          firstname
+          lastname
+        }
+      }
+      tickets {
+        id
+        name
+        status
+        userTicket {
+          user {
+            firstname
+          }
+        }
+      }
+    }
+  }
+`;

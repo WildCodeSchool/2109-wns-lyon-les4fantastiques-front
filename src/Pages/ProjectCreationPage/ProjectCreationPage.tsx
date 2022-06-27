@@ -162,10 +162,9 @@ function ProjectCreationPage(): JSX.Element {
             </Grid>
           </Grid>
         </Grid>
-        {/* <Stack spacing={2} direction="row" />
         <Button variant="contained" sx={{ marginTop: 3, width: "25ch" }} id="button-add-member">
           ADD MORE MEMBERS
-        </Button> */}
+        </Button>
       </Box>
       {isLoading && <p style={{ textAlign: "center" }}>Creating project...</p>}
       {error && <p style={{ textAlign: "center" }}>{error}</p>}

@@ -15,10 +15,13 @@ import { projectsContext } from "../../contexts/Projects/ProjectsProvider";
 import { IProject } from "../../contexts/Projects/types";
 import "./ProjectsListPage.scss";
 import Paper from "@mui/material/Paper";
+import { useNavigate } from "react-router-dom";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 function ProjectsListPage() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
+  const navigate = useNavigate();
 
   const { currentUser } = useAuth();
   const { projects, getProjects } = useContext(projectsContext);
@@ -49,6 +52,7 @@ function ProjectsListPage() {
                     <TableCell>Name</TableCell>
                     <TableCell>Time Estimation</TableCell>
                     <TableCell>Time Spent</TableCell>
+                    <TableCell>Link</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -59,6 +63,14 @@ function ProjectsListPage() {
                         <TableCell>{project.name}</TableCell>
                         <TableCell>{project.timeEstimation}</TableCell>
                         <TableCell>{project.timeSpent}</TableCell>
+                        <TableCell>
+                          <div
+                            style={{ width: "100%", cursor: "pointer" }}
+                            onClick={() => navigate(`/project/${project.id}`)}
+                          >
+                            <OpenInNewIcon />
+                          </div>
+                        </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>
