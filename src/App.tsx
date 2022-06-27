@@ -44,9 +44,9 @@ function App() {
                   </GuardedRoute>
                 }
               />
-              <Route path="/create/project" element={<ProjectCreationPage />}></Route>
-              <Route path="/create/task" element={<TaskCreationPage />}></Route>
-              <Route path="/project/:id" element={<ProjectDetailsPage />}></Route>
+              <Route path="/create/project" element={<ProjectCreationPage />} />
+              <Route path="/create/task" element={<TaskCreationPage />} />
+              <Route path="/project/:id" element={<ProjectDetailsPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Router>
