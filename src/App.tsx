@@ -11,15 +11,15 @@ import WelcomePage from "./Pages/WelcomePage/WelcomePage";
 import Header from "./components/Shared/Header/Header";
 
 import "./App.scss";
-import ProjectsListPage from "./Pages/ProjectsListPage/ProjectsListPage";
-import TasksListPage from "./Pages/TasksListPage/TasksListPage";
+import ProjectsListPage from "./Pages/Projects/ProjectsListPage/ProjectsListPage";
+import TasksListPage from "./Pages/Tickets/TasksListPage/TasksListPage";
 import UsersManagementPage from "./Pages/UsersManagementPage/UsersManagementPage";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { myTheme } from "./Theme";
-import ProjectCreationPage from "./Pages/ProjectCreationPage/ProjectCreationPage";
-import TaskCreationPage from "./Pages/TaskCreationPage/TaskCreationPage";
-import ProjectDetailsPage from "./Pages/ProjectDetailsPage/ProjectDetailsPage";
+import ProjectCreationPage from "./Pages/Projects/ProjectCreationPage/ProjectCreationPage";
+import TaskCreationPage from "./Pages/Tickets/TaskCreationPage/TaskCreationPage";
+import ProjectDetailsPage from "./Pages/Projects/ProjectDetailsPage/ProjectDetailsPage";
 
 function App() {
   return (

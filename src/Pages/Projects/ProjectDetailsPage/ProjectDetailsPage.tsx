@@ -1,13 +1,13 @@
 import { Button, CircularProgress, Grid } from "@mui/material";
-import Header from "../../components/Shared/Header/Header";
+import Header from "../../../components/Shared/Header/Header";
 import "./ProjectDetailsPage.scss";
 import TimerIcon from "@mui/icons-material/Timer";
 import PercentIcon from "@mui/icons-material/Percent";
-import UserCard from "../../components/Projects/UserCard";
+import UserCard from "../../../components/Projects/UserCard";
 import { useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { projectsContext } from "../../contexts/Projects/ProjectsProvider";
-import { getLastPart } from "../../helpers/getLastPart";
+import { projectsContext } from "../../../contexts/Projects/ProjectsProvider";
+import { getLastPart } from "../../../helpers/getLastPart";
 import TextField from "@mui/material/TextField";
 
 function ProjectDetailsPage(): JSX.Element {

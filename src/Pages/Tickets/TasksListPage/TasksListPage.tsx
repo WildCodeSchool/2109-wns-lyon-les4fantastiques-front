@@ -11,10 +11,10 @@ import {
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Shared/Header/Header";
-import { useAuth } from "../../contexts/Auth/AuthProvider";
-import { ticketsContext } from "../../contexts/Tickets/TicketsProvider";
-import { ITicket } from "../../contexts/Tickets/types";
+import Header from "../../../components/Shared/Header/Header";
+import { useAuth } from "../../../contexts/Auth/AuthProvider";
+import { ticketsContext } from "../../../contexts/Tickets/TicketsProvider";
+import { ITicket } from "../../../contexts/Tickets/types";
 import "./TasksListPage.scss";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
