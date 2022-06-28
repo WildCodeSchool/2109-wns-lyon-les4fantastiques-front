@@ -8,6 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import UsersProvider from "./contexts/Users/UsersProvider";
 import AuthProvider from "./contexts/Auth/AuthProvider";
 import ProjectsProvider from "./contexts/Projects/ProjectsProvider";
+import TicketsProvider from "./contexts/Tickets/TicketsProvider";
 
 const httpLink = createHttpLink({
   uri: "http://127.0.0.1:4001/graphql"
@@ -37,7 +38,9 @@ ReactDOM.render(
       <AuthProvider>
         <UsersProvider>
           <ProjectsProvider>
-            <App />
+            <TicketsProvider>
+              <App />
+            </TicketsProvider>
           </ProjectsProvider>
         </UsersProvider>
       </AuthProvider>
