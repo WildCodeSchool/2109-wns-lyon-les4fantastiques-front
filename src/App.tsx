@@ -20,6 +20,7 @@ import { myTheme } from "./Theme";
 import ProjectCreationPage from "./Pages/Projects/ProjectCreationPage/ProjectCreationPage";
 import TaskCreationPage from "./Pages/Tickets/TaskCreationPage/TaskCreationPage";
 import ProjectDetailsPage from "./Pages/Projects/ProjectDetailsPage/ProjectDetailsPage";
+import TaskDetailsPage from "./Pages/Tickets/TaskDetailsPage/TaskDetailsPage";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
               <Route path="/create/project" element={<ProjectCreationPage />} />
               <Route path="/create/task" element={<TaskCreationPage />} />
               <Route path="/project/:id" element={<ProjectDetailsPage />} />
+              <Route path="/ticket/:id" element={<TaskDetailsPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Router>

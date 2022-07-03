@@ -1,6 +1,6 @@
-@import "../../scss/colors.scss";
+@import "../../../scss/colors.scss";
 
-.card-container {
+.project-card-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +19,6 @@
 .text-field {
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-bottom: 10px;
 }

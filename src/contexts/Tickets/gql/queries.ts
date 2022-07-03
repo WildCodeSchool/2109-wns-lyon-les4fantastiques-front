@@ -28,14 +28,36 @@ export const FETCHTICKETBYID = gql`
       name
       timeEstimation
       timeSpent
+      description
+      status
+      pictures {
+        contentUrl
+      }
+      comments {
+        content
+        author {
+          firstname
+          lastname
+        }
+      }
       project {
         name
+        userProject {
+          user {
+            id
+            firstname
+            lastname
+            email
+          }
+        }
       }
       userTicket {
         role
         user {
+          id
           firstname
           lastname
+          email
         }
       }
     }

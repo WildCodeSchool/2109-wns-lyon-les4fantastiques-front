@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Dispatch, SetStateAction } from "react";
 import { IProject } from "../Projects/types";
+import { IUser } from "../Users/types";
 
 export interface ITicketsContext {
   tickets: ITicket[];
@@ -9,6 +10,8 @@ export interface ITicketsContext {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   getTickets: (userId: number) => void;
   getTicketById: (id: number) => void;
+  addCommentToTicket: (ticketId: number, content: string) => Promise<boolean>;
+  updateTicket: (ticketId: number, ticketBody: ITicket) => Promise<boolean>;
 }
 
 export interface ITicket {
@@ -21,6 +24,18 @@ export interface ITicket {
   timeSpent: number;
   isActive: boolean;
   project: IProject;
-  comments: any[];
+  comments: IComment[];
   pictures: any[];
+  userTicket: IUserTicket[];
+}
+
+export interface IComment {
+  content: string;
+  author: IUser;
+}
+
+export interface IUserTicket {
+  role: string;
+  user: IUser;
+  email: string;
 }

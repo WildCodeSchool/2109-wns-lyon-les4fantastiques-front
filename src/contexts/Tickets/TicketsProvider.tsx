@@ -1,7 +1,7 @@
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { createContext, ReactNode, useState } from "react";
-import { FETCHPROJECTBYID } from "../Projects/gql/queries";
-import { FETCHTICKETS } from "./gql/queries";
+import { ADDCOMMENT, UPDATETICKET } from "./gql/mutations";
+import { FETCHTICKETBYID, FETCHTICKETS } from "./gql/queries";
 import { ITicket, ITicketsContext } from "./types";
 
 interface IProps {
@@ -21,11 +21,14 @@ const TicketsProvider = (props: IProps) => {
     }
   });
 
-  const [fetchTicketById] = useLazyQuery(FETCHPROJECTBYID, {
+  const [fetchTicketById] = useLazyQuery(FETCHTICKETBYID, {
     onCompleted: (data) => {
       setTicket(data.getTicket);
     }
   });
+
+  const [doAddCommentToTicket] = useMutation(ADDCOMMENT);
+  const [doUpdateTicket] = useMutation(UPDATETICKET);
 
   const getTickets = (userId: number): void => {
     fetchTickets({ variables: { data: { userAssignedId: +userId } } });
@@ -35,13 +38,42 @@ const TicketsProvider = (props: IProps) => {
     fetchTicketById({ variables: { id } });
   };
 
+  const addCommentToTicket = async (ticketId: number, content: string) => {
+    try {
+      await doAddCommentToTicket({
+        variables: {
+          data: { ticketId, content }
+        }
+      });
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+
+  const updateTicket = async (ticketId: number, ticketBody: ITicket) => {
+    try {
+      await doUpdateTicket({
+        variables: {
+          data: { ticketId, ...ticketBody }
+        }
+      });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   const contextValue: ITicketsContext = {
     tickets,
     ticket,
     isLoading,
     setIsLoading,
     getTickets,
-    getTicketById
+    getTicketById,
+    addCommentToTicket,
+    updateTicket
   };
   return <ticketsContext.Provider value={contextValue}>{props.children}</ticketsContext.Provider>;
 };

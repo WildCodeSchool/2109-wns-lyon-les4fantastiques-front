@@ -74,7 +74,7 @@ function ProjectDetailsPage(): JSX.Element {
                   <h1 style={{ color: "#ef476f" }}>
                     <span style={{ color: "white" }}>Product</span> Owner
                   </h1>
-                  <div className="card-container">
+                  <div className="project-card-container">
                     {project.userProject
                       .filter((userProject: any) => userProject.role === "PO")
                       .map((userProject: any, index: number) => (
@@ -91,7 +91,7 @@ function ProjectDetailsPage(): JSX.Element {
                   <h1 style={{ color: "#06d6a0" }}>
                     <span style={{ color: "white" }}>Project</span> Members
                   </h1>
-                  <div className="card-container">
+                  <div className="project-card-container">
                     {project.userProject
                       .filter((userProject: any) => userProject.role === "DEV")
                       .map((userProject: any, index: number) => (

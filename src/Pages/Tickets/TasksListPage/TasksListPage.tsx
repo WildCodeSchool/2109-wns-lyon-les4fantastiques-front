@@ -40,10 +40,6 @@ function TasksListPage() {
     }
   }, [currentUser]);
 
-  useEffect(() => {
-    console.log(tickets);
-  }, [tickets]);
-
   return (
     <>
       <Header />
