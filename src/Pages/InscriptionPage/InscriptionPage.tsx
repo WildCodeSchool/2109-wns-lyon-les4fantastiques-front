@@ -1,29 +1,15 @@
 import { useEffect, useState } from "react";
-import { useMutation } from "@apollo/client";
 import { Link, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import gql from "graphql-tag";
 import "./InscriptionPage.scss";
 import PersonIcon from "@mui/icons-material/Person";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LockIcon from "@mui/icons-material/Lock";
 import { Grid } from "@mui/material";
-
-const registration = gql`
-  mutation signup($firstname: String!, $lastname: String!, $email: String!, $password: String!) {
-    signup(
-      data: { firstname: $firstname, lastname: $lastname, email: $email, password: $password }
-    ) {
-      id
-      firstname
-      lastname
-      email
-    }
-  }
-`;
+import { useAuth } from "../../contexts/Auth/AuthProvider";
 
 export function InscriptionPage() {
   const [firstname, setFirstname] = useState("");
@@ -33,28 +19,17 @@ export function InscriptionPage() {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [isFormCompleted, setIsFormCompleted] = useState(false);
   const navigate = useNavigate();
-  const [doSignUp, { loading, error }] = useMutation(registration, {
-    context: {
-      headers: {
-        "Access-Control-Allow-Origin": "*"
-      }
-    }
-  });
+
+  const { handleSignUp, isLoading, error } = useAuth();
 
   const onSubmit = async () => {
-    try {
-      await doSignUp({
-        variables: {
-          firstname: firstname,
-          lastname: lastname,
-          email: email,
-          password: password
-        }
-      });
-      !loading && navigate("/connexion");
-    } catch (error) {
-      console.error(error);
-    }
+    await handleSignUp({
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      password: password
+    });
+    !isLoading && !error && navigate("/connexion");
   };
 
   useEffect(() => {
@@ -189,7 +164,7 @@ export function InscriptionPage() {
           onClick={onSubmit}
           variant="contained"
           sx={{ marginTop: 3, width: "25ch" }}
-          disabled={loading || !isFormCompleted}
+          disabled={isLoading || !isFormCompleted}
         >
           Sign Up
         </Button>

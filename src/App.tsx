@@ -1,22 +1,26 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 
+import EasyTicketLogo from "./assets/images/easy-ticket-logo.svg";
+
+import "./App.scss";
+import GuardedRoute from "./components/Shared/GuardedRoute/GuardedRoute";
+
 import { InscriptionPage } from "./Pages/InscriptionPage/InscriptionPage";
 import { ConnexionPage } from "./Pages/ConnexionPage/ConnexionPage";
 import WelcomePage from "./Pages/WelcomePage/WelcomePage";
 import Header from "./components/Shared/Header/Header";
 
-import EasyTicketLogo from "./assets/images/easy-ticket-logo.svg";
-
 import "./App.scss";
-import ProjectsListPage from "./Pages/ProjectsListPage/ProjectsListPage";
-import TasksListPage from "./Pages/TasksListPage/TasksListPage";
+import ProjectsListPage from "./Pages/Projects/ProjectsListPage/ProjectsListPage";
+import TasksListPage from "./Pages/Tickets/TasksListPage/TasksListPage";
 import UsersManagementPage from "./Pages/UsersManagementPage/UsersManagementPage";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { myTheme } from "./Theme";
-import ProjectCreationPage from "./Pages/ProjectCreationPage/ProjectCreationPage";
-import TaskCreationPage from "./Pages/TaskCreationPage/TaskCreationPage";
-import GuardedRoute from "./components/Shared/GuardedRoute/GuardedRoute";
+import ProjectCreationPage from "./Pages/Projects/ProjectCreationPage/ProjectCreationPage";
+import TaskCreationPage from "./Pages/Tickets/TaskCreationPage/TaskCreationPage";
+import ProjectDetailsPage from "./Pages/Projects/ProjectDetailsPage/ProjectDetailsPage";
+import TaskDetailsPage from "./Pages/Tickets/TaskDetailsPage/TaskDetailsPage";
 
 function App() {
   return (
@@ -43,6 +47,8 @@ function App() {
               />
               <Route path="/create/project" element={<ProjectCreationPage />} />
               <Route path="/create/task" element={<TaskCreationPage />} />
+              <Route path="/project/:id" element={<ProjectDetailsPage />} />
+              <Route path="/ticket/:id" element={<TaskDetailsPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Router>

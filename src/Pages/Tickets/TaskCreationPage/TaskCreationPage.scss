@@ -1,0 +1,14 @@
+@import "../../../scss/colors.scss";
+
+#ticket-creation-box {
+  justify-content: center;
+  margin-left: 5%;
+  margin-top: 4%;
+  padding: 2%;
+}
+
+#button-add-member {
+  margin-left: 35%;
+  margin-bottom: 5%;
+  background-color: $green;
+}
