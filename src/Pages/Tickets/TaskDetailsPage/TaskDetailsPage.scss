@@ -1,0 +1,79 @@
+@import "../../../scss/colors.scss";
+
+#ticket-container {
+  padding: 2rem;
+}
+
+.ticket-title {
+  color: $dodgerBlue;
+}
+
+.article-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1%;
+  padding: 2%;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  width: 45%;
+  height: fit-content;
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  color: $pink;
+  font-size: 1.3rem;
+}
+
+.label {
+  margin-right: 10%;
+  width: 150px;
+}
+
+.unit {
+  margin-left: 10%;
+}
+
+.comment-container {
+  overflow: scroll;
+  height: 40rem;
+}
+
+.comment-content {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: scroll;
+}
+.comment-author {
+  opacity: 70%;
+}
+
+.comment-input {
+  width: 70%;
+}
+
+.comment-input-container {
+  margin-top: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.pictures-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.picture {
+  width: 150px;
+  height: auto;
+  cursor: pointer;
+}

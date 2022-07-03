@@ -9,10 +9,10 @@ import {
   TableRow
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import Header from "../../components/Shared/Header/Header";
-import { useAuth } from "../../contexts/Auth/AuthProvider";
-import { projectsContext } from "../../contexts/Projects/ProjectsProvider";
-import { IProject } from "../../contexts/Projects/types";
+import Header from "../../../components/Shared/Header/Header";
+import { useAuth } from "../../../contexts/Auth/AuthProvider";
+import { projectsContext } from "../../../contexts/Projects/ProjectsProvider";
+import { IProject } from "../../../contexts/Projects/types";
 import "./ProjectsListPage.scss";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";

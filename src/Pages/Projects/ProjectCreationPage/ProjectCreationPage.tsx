@@ -1,11 +1,11 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
-import Header from "../../components/Shared/Header/Header";
+import Header from "../../../components/Shared/Header/Header";
 import "./ProjectCreationPage.scss";
 import PersonIcon from "@mui/icons-material/Person";
 import TimerIcon from "@mui/icons-material/Timer";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import { useContext, useEffect, useState } from "react";
-import { projectsContext } from "../../contexts/Projects/ProjectsProvider";
+import { projectsContext } from "../../../contexts/Projects/ProjectsProvider";
 import { useNavigate } from "react-router-dom";
 
 function ProjectCreationPage(): JSX.Element {

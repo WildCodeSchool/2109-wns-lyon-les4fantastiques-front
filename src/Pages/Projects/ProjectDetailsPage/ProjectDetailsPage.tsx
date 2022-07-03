@@ -1,13 +1,13 @@
 import { Button, CircularProgress, Grid } from "@mui/material";
-import Header from "../../components/Shared/Header/Header";
+import Header from "../../../components/Shared/Header/Header";
 import "./ProjectDetailsPage.scss";
 import TimerIcon from "@mui/icons-material/Timer";
 import PercentIcon from "@mui/icons-material/Percent";
-import UserCard from "../../components/Projects/UserCard";
+import UserCard from "../../../components/Projects/UserCard";
 import { useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { projectsContext } from "../../contexts/Projects/ProjectsProvider";
-import { getLastPart } from "../../helpers/getLastPart";
+import { projectsContext } from "../../../contexts/Projects/ProjectsProvider";
+import { getLastPart } from "../../../helpers/getLastPart";
 import TextField from "@mui/material/TextField";
 
 function ProjectDetailsPage(): JSX.Element {
@@ -74,7 +74,7 @@ function ProjectDetailsPage(): JSX.Element {
                   <h1 style={{ color: "#ef476f" }}>
                     <span style={{ color: "white" }}>Product</span> Owner
                   </h1>
-                  <div className="card-container">
+                  <div className="project-card-container">
                     {project.userProject
                       .filter((userProject: any) => userProject.role === "PO")
                       .map((userProject: any, index: number) => (
@@ -91,7 +91,7 @@ function ProjectDetailsPage(): JSX.Element {
                   <h1 style={{ color: "#06d6a0" }}>
                     <span style={{ color: "white" }}>Project</span> Members
                   </h1>
-                  <div className="card-container">
+                  <div className="project-card-container">
                     {project.userProject
                       .filter((userProject: any) => userProject.role === "DEV")
                       .map((userProject: any, index: number) => (

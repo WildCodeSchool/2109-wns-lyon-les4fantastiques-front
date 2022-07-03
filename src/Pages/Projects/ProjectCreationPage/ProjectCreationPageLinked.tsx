@@ -1,4 +1,4 @@
-import Header from "../../components/Shared/Header/Header";
+import Header from "../../../components/Shared/Header/Header";
 import "./ProjectCreationPage.scss";
 
 // const createProject = gql`

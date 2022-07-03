@@ -11,7 +11,14 @@ function NavBar({ currentUser }: IProps): JSX.Element {
   const [value, setValue] = React.useState("/tasks");
 
   useEffect(() => {
-    setValue(window.location.pathname);
+    const pathname = window.location.pathname;
+    const valueToSet =
+      pathname.includes("task") || pathname.includes("ticket")
+        ? "/tasks"
+        : pathname.includes("project")
+        ? "/projects"
+        : "/users";
+    setValue(valueToSet);
   }, [window]);
   return (
     <div className="navbar-container">
